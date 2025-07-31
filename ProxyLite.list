@@ -7,3 +7,5 @@
 # IP段匹配IP-CIDR,xx.xx.xx,no-resolve
 
 #定制
+DOMAIN-SUFFIX,ovocloud.cc
+DOMAIN-SUFFIX,155.fun
