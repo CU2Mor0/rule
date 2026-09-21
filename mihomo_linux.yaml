@@ -1,7 +1,7 @@
 rule-anchor:
   # 节点选择
   P: &P {type: http, interval: 0, health-check: {enable: true, url: 'https://www.gstatic.com/generate_204', interval: 300}, exclude-filter: "官网|剩余|流量|套餐|订阅|直连|到期时间|GB|Expire Date|Traffic|ExpireDate", proxy: 直连}
-  G1: &G1 {type: select, proxies: [手动切换, 香港节点, 台湾节点, 狮城节点, 日本节点, 韩国节点, 美国节点, 备用节点]}
+  G1: &G1 {type: select, proxies: [手动切换, 香港节点, 台湾节点, 狮城节点, 日本节点, 韩国节点, 美国节点]}
   S1: &S1 {type: select, proxies: [直连, 节点选择, 手动切换, 香港节点, 台湾节点, 狮城节点, 日本节点, 韩国节点, 美国节点]}
   # 节点筛选
   HK: &HK "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"
@@ -11,17 +11,12 @@ rule-anchor:
   KR: &KR "(?=.*(韩|首尔|KR|(?i)Korea))^((?!(港|台|日|新|美)).)*$"
   US: &US "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"
   # 策略组
-  SD: &SD {type: select, use: [常用]}
-  SDB: &SDB {type: select, use: [备用]} 
+  SD: &SD {type: select, include-all: true}
   URL: &URL {type: url-test, include-all: true, tolerance: 50, interval: 300, lazy: true, url: 'https://www.gstatic.com/generate_204'}
   # 规则集
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
-
-proxy-providers:
-  常用: {<<: *P, url: "__SUB_MAIN__"}
-  备用: {<<: *P, url: "__SUB_BACKUP__"}
 
 proxies:
   - {name: 直连, type: direct, udp: true}
@@ -145,7 +140,6 @@ proxy-groups:
   - {name: 日本节点, <<: *SD, filter: *JP, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/flag/corner/japan.png"}
   - {name: 韩国节点, <<: *SD, filter: *KR, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/flag/corner/south_korea.png"}
   - {name: 美国节点, <<: *SD, filter: *US, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/flag/corner/usa.png"}
-  - {name: 备用节点, <<: *SDB, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/failover.png"}
   - {name: GLOBAL, <<: *G1, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/all.png"}
 
 rules:
