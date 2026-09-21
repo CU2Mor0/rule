@@ -124,7 +124,7 @@ dns:
 
 proxy-groups:
   - {name: 节点选择, <<: *G1, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/select.png"}
-  - {name: 手动切换, <<: *SD, proxies: [直连], icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/all.png"}
+  - {name: 手动切换, <<: *SD, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/all.png"}
   - {name: Telegram, <<: *S1, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/telegram.png"}
   - {name: GitHub, <<: *S1, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/github.png"}
   - {name: AI, <<: *S1, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/ai.png"}
