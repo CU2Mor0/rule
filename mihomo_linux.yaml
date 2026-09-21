@@ -18,12 +18,15 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
 
+proxy-providers:
+  1: {<<: *P, url: "订阅URL"}
+
 proxies:
   - {name: 直连, type: direct, udp: true}
 
 mixed-port: 7890
 authentication:
-- "guest123"
+- "user:passwd"
 skip-auth-prefixes:
 - 127.0.0.0/8
 - 192.168.0.0/16
