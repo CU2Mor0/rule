@@ -57,11 +57,13 @@ ntp:
 
 tun:
   enable: true
-  stack: mixed   ##如果内核版本大于v1.19.31，此处可以改为自研协议栈 mips ，理论上性能更好。
+  stack: system   ##如果内核版本大于v1.19.31，此处可以改为自研协议栈 mips ，理论上性能更好。
   dns-hijack: ["any:53", "tcp://any:53"]
+  mtu: 1500
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+  endpoint-independent-nat: true
   route-exclude-address-set:
     - cn_ip
 
