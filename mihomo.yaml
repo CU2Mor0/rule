@@ -58,6 +58,7 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   endpoint-independent-nat: true
+  gso: true
 
 sniffer:
   enable: true
