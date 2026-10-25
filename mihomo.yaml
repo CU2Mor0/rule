@@ -15,6 +15,7 @@ rule-anchor:
   URL: &URL {type: url-test, include-all: true, tolerance: 50, interval: 300, lazy: true, url: 'https://www.gstatic.com/generate_204'}
   # 规则集
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  ip_text: &ip_text {type: http, interval: 86400, behavior: ipcidr, format: text}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
 
@@ -143,6 +144,7 @@ rules:
   - AND,((RULE-SET,cn!_domain),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,my-proxy,节点选择
   - RULE-SET,my-direct,直连
+  - RULE-SET,my_direct_ip,直连,no-resolve
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,private_domain,直连
   - RULE-SET,ai_domain,AI
@@ -175,6 +177,7 @@ rule-providers:
   fakeipfilter_!cn: {<<: *domain_text, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-!cn.list"}
   my-proxy: {<<: *domain_text, url: "https://raw.githubusercontent.com/CU2Mor0/rule/refs/heads/main/ProxyLite.list"}
   my-direct: {<<: *domain_text, url: "https://raw.githubusercontent.com/CU2Mor0/rule/refs/heads/main/Direct.list"}
+  my_direct_ip: {<<: *ip_text, url: "https://raw.githubusercontent.com/CU2Mor0/rule/refs/heads/main/DirectIP.list"}
   private_domain: {<<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.mrs"}
   ai_domain: {<<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs"}
   youtube_domain: {<<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs"}
