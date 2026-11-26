@@ -19,24 +19,14 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
 
-proxy-providers:
-  1: {<<: *P, url: "订阅URL"}
-
 proxies:
   - {name: 直连, type: direct, udp: true}
 
-mixed-port: 7890
-authentication:
-- ""
-skip-auth-prefixes:
-- 127.0.0.0/8
-- 192.168.0.0/16
 allow-lan: true
 bind-address: "*"
 ipv6: true
 unified-delay: true
 tcp-concurrent: true
-log-level: info
 keep-alive-idle: 600
 keep-alive-interval: 15
 profile:
